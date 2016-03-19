@@ -20,7 +20,7 @@ import sys
 
 sys.path.insert(0, "src/main/python")
 
-from pybuilder.core import init, use_plugin
+from pybuilder.core import init, use_plugin, Author
 
 use_plugin("python.core")
 use_plugin("karellen_pyb_plugin")
@@ -32,8 +32,9 @@ url = "https://github.com/karellen/karellen-pyb-plugin"
 description = "Please visit %s for more information!" % url
 summary = "Karellen PyBuilder Plugin"
 
+authors = [Author("Karellen, Inc", "supervisor@karellen.co")]
 default_task = ["analyze", "publish"]
-
+license = "Apache License, Version 2.0"
 
 @init
 def set_properties(project):
@@ -52,5 +53,6 @@ def set_properties(project):
         "Development Status :: 5 - Production/Stable",
         "Environment :: Console",
         "Intended Audience :: Developers",
+        "License :: OSI Approved :: Apache Software License",
         "Programming Language :: Python",
         "Programming Language :: Python :: 3.5"])

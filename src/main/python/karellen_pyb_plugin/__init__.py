@@ -93,6 +93,8 @@ def configure(project):
 
     # Distutils
     project.set_property("distutils_commands", ["sdist", "bdist_wheel"])
+    project.set_property("distutils_upload_sign", True)
+    project.set_property("distutils_upload_sign_identity", "5F4AFAA3")
 
 
 @task
