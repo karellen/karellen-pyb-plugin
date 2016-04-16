@@ -33,8 +33,9 @@ description = "Please visit %s for more information!" % url
 summary = "Karellen PyBuilder Plugin"
 
 authors = [Author("Karellen, Inc", "supervisor@karellen.co")]
-default_task = ["analyze", "publish"]
+default_task = ["install_dependencies", "analyze", "publish"]
 license = "Apache License, Version 2.0"
+
 
 @init
 def set_properties(project):
@@ -49,10 +50,5 @@ def set_properties(project):
     # Cram Configuration
     project.set_property("cram_fail_if_no_tests", False)
 
-    project.set_property("distutils_classifiers", [
-        "Development Status :: 5 - Production/Stable",
-        "Environment :: Console",
-        "Intended Audience :: Developers",
-        "License :: OSI Approved :: Apache Software License",
-        "Programming Language :: Python",
-        "Programming Language :: Python :: 3.5"])
+    # PDoc
+    project.set_property("pdoc_module_name", "karellen_pyb_plugin")
