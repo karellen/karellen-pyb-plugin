@@ -27,16 +27,14 @@ use_plugin("python.flake8")
 use_plugin("python.distutils")
 use_plugin("python.pycharm")
 use_plugin("python.cram")
+use_plugin("python.pdoc")
 use_plugin("pypi:pybuilder_header_plugin")
 
 
 @init
 def configure(project):
-    project.build_depends_on("wheel")
-    project.build_depends_on("mock")
-    project.build_depends_on("coverage")
-
-    project.set_property("default_task", ["analyze", "publish"])
+    project.build_depends_on("wheel", ">=0.29.0")
+    project.build_depends_on("coverage", "~=4.0")
 
     # Integration Test Configuration
     project.set_property("dir_source_integrationtest_python", "src/integrationtest/python")
@@ -92,6 +90,14 @@ def configure(project):
     project.set_property("cram_fail_if_no_tests", True)
 
     # Distutils
+    project.set_property("distutils_classifiers", ["Development Status :: 5 - Production/Stable",
+                                                   "Environment :: Console",
+                                                   "Intended Audience :: Developers",
+                                                   "License :: OSI Approved :: Apache Software License",
+                                                   "Programming Language :: Python",
+                                                   "Programming Language :: Python :: 3.5"
+                                                   ]
+                         )
     project.set_property("distutils_commands", ["sdist", "bdist_wheel"])
     project.set_property("distutils_upload_sign", True)
     project.set_property("distutils_upload_sign_identity", "5F4AFAA3")
