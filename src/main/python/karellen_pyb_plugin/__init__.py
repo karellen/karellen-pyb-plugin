@@ -34,7 +34,7 @@ use_plugin("pypi:pybuilder_header_plugin")
 @init
 def configure(project):
     project.build_depends_on("wheel", ">=0.29.0")
-    project.build_depends_on("coverage", "~=4.0")
+    project.build_depends_on("coverage", "~=4.2")
 
     # Integration Test Configuration
     project.set_property("dir_source_integrationtest_python", "src/integrationtest/python")
