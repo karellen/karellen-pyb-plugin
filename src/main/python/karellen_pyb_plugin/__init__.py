@@ -36,6 +36,7 @@ def configure(project):
     project.build_depends_on("wheel", ">=0.29.0")
     project.build_depends_on("coverage", "~=4.2")
     # project.build_depends_on("sphinx", ">=1.5")
+    project.build_depends_on("sphinx_rtd_theme", ">=0.0.1")
 
     # Integration Test Configuration
     project.set_property("dir_source_integrationtest_python", "src/integrationtest/python")
@@ -115,6 +116,15 @@ def run_integration_tests(project, logger):
     from pybuilder.plugins.python import unittest_plugin
 
     unittest_plugin.run_tests(project, logger, "integrationtest", "integration tests")
+
+
+@before("sphinx_generate_documentation")
+def set_sphinx_html_path(project):
+    import sphinx_rtd_theme
+
+    sphinx_conf = project.get_property("sphinx_project_conf")
+    sphinx_conf["html_theme"] = "sphinx_rtd_theme"
+    sphinx_conf["html_theme_path"] = [sphinx_rtd_theme.get_html_theme_path()]
 
 
 @before("verify")
