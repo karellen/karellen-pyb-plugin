@@ -27,7 +27,7 @@ use_plugin("python.flake8")
 use_plugin("python.distutils")
 use_plugin("python.pycharm")
 use_plugin("python.cram")
-use_plugin("python.pdoc")
+use_plugin("python.sphinx")
 use_plugin("pypi:pybuilder_header_plugin")
 
 
@@ -35,6 +35,7 @@ use_plugin("pypi:pybuilder_header_plugin")
 def configure(project):
     project.build_depends_on("wheel", ">=0.29.0")
     project.build_depends_on("coverage", "~=4.2")
+    # project.build_depends_on("sphinx", ">=1.5")
 
     # Integration Test Configuration
     project.set_property("dir_source_integrationtest_python", "src/integrationtest/python")
@@ -101,6 +102,12 @@ def configure(project):
     project.set_property("distutils_commands", ["sdist", "bdist_wheel"])
     project.set_property("distutils_upload_sign", True)
     project.set_property("distutils_upload_sign_identity", "5F4AFAA3")
+
+    # Sphinx
+    project.set_property("sphinx_output_per_builder", True)
+    project.set_property("sphinx_run_apidoc", True)
+    project.set_property("sphinx_apidoc_extra_args", ["-l", "-e"])
+    project.set_property("sphinx_build_extra_args", ["-E"])
 
 
 @task
