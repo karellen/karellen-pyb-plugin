@@ -125,6 +125,7 @@ def set_sphinx_html_path(project):
     sphinx_conf = project.get_property("sphinx_project_conf")
     sphinx_conf["html_theme"] = "sphinx_rtd_theme"
     sphinx_conf["html_theme_path"] = [sphinx_rtd_theme.get_html_theme_path()]
+    sphinx_conf["extensions"].append("sphinx.ext.napoleon")
 
 
 @before("verify")
