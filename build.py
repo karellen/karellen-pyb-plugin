@@ -29,8 +29,8 @@ name = "karellen-pyb-plugin"
 version = "0.0.1.dev"
 
 url = "https://github.com/karellen/karellen-pyb-plugin"
-description = "Please visit %s for more information!" % url
 summary = "Karellen PyBuilder Plugin"
+description = "Please visit %s for more information!" % url
 
 authors = [Author("Karellen, Inc", "supervisor@karellen.co")]
 default_task = ["install_dependencies", "analyze", "publish"]
