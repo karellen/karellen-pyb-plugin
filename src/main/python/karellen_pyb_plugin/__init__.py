@@ -33,9 +33,9 @@ use_plugin("pypi:pybuilder_header_plugin")
 
 @init
 def configure(project):
-    project.build_depends_on("wheel", ">=0.29.0")
+    project.build_depends_on("wheel", "~=0.29.0")
     project.build_depends_on("coverage", "~=4.2")
-    # project.build_depends_on("sphinx", ">=1.5")
+    project.build_depends_on("sphinx", "~=1.5.0.dev")
     project.build_depends_on("sphinx_rtd_theme", ">=0.0.1")
 
     # Integration Test Configuration
@@ -103,6 +103,8 @@ def configure(project):
     project.set_property("distutils_commands", ["sdist", "bdist_wheel"])
     project.set_property("distutils_upload_sign", True)
     project.set_property("distutils_upload_sign_identity", "5F4AFAA3")
+    project.set_property("distutils_readme_description", True)
+    project.set_property("distutils_description_overwrite", True)
 
     # Sphinx
     project.set_property("sphinx_output_per_builder", True)
