@@ -127,7 +127,21 @@ def set_sphinx_html_path(project):
     sphinx_conf = project.get_property("sphinx_project_conf")
     sphinx_conf["html_theme"] = "sphinx_rtd_theme"
     sphinx_conf["html_theme_path"] = [sphinx_rtd_theme.get_html_theme_path()]
+
+    # Napoleon settings
     sphinx_conf["extensions"].append("sphinx.ext.napoleon")
+    sphinx_conf["napoleon_google_docstring"] = True
+    sphinx_conf["napoleon_numpy_docstring"] = False
+    sphinx_conf["napoleon_include_init_with_doc"] = False
+    sphinx_conf["napoleon_include_private_with_doc"] = False
+    sphinx_conf["napoleon_include_special_with_doc"] = False
+    sphinx_conf["napoleon_use_admonition_for_examples"] = False
+    sphinx_conf["napoleon_use_admonition_for_notes"] = False
+    sphinx_conf["napoleon_use_admonition_for_references"] = False
+    sphinx_conf["napoleon_use_ivar"] = False
+    sphinx_conf["napoleon_use_param"] = True
+    sphinx_conf["napoleon_use_rtype"] = True
+    sphinx_conf["napoleon_use_keyword"] = True
 
 
 @before("verify")
