@@ -2,7 +2,9 @@
 
 [Karellen](https://www.karellen.co/karellen/) [PyBuilder](http://pybuilder.github.io/) Plugin
 
-This is the main PyBuilder plugin for all of the projects under [Karellen](https://www.karellen.co/) umbrella. 
+[![Gitter chat](https://badges.gitter.im/karellen/gitter.svg)](https://gitter.im/karellen/lobby)
+
+This is the main PyBuilder plugin for all of the projects under [Karellen](https://www.karellen.co/) umbrella.
 This plugin governs the following PyBuilder project settings:
 
 1. Code style and copyright headers.

@@ -33,9 +33,9 @@ use_plugin("pypi:pybuilder_header_plugin")
 
 @init
 def configure(project):
-    project.build_depends_on("wheel", "~=0.29.0")
-    project.build_depends_on("coverage", "~=4.2")
-    project.build_depends_on("sphinx", "~=1.5.0.dev")
+    project.build_depends_on("wheel", "~=0.30")
+    project.build_depends_on("coverage", "~=4.4")
+    project.build_depends_on("sphinx", ">=1.6")
     project.build_depends_on("sphinx_rtd_theme", ">=0.0.1")
 
     # Integration Test Configuration
@@ -62,6 +62,7 @@ def configure(project):
     project.set_property("flake8_break_build", True)
     project.set_property("flake8_include_test_sources", True)
     project.set_property("flake8_include_scripts", True)
+    project.set_property("flake8_ignore", "E402")
     project.set_property("flake8_exclude_patterns", ".svn,CVS,.bzr,.hg,.git,__pycache__,*.sh")
 
     # Copyright Header
@@ -97,7 +98,7 @@ def configure(project):
                                                    "Intended Audience :: Developers",
                                                    "License :: OSI Approved :: Apache Software License",
                                                    "Programming Language :: Python",
-                                                   "Programming Language :: Python :: 3.5"
+                                                   "Programming Language :: Python :: 3.6"
                                                    ]
                          )
     project.set_property("distutils_commands", ["sdist", "bdist_wheel"])
