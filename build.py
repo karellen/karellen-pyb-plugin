@@ -1,7 +1,6 @@
+# -*- coding: utf-8 -*-
 #
-#  -*- coding: utf-8 -*-
-#
-# (C) Copyright 2016 Karellen, Inc. (http://karellen.co/)
+# (C) Copyright 2020 Karellen, Inc. (http://www.karellen.co/)
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -26,26 +25,30 @@ use_plugin("python.core")
 use_plugin("karellen_pyb_plugin")
 
 name = "karellen-pyb-plugin"
-version = "0.0.1.dev"
+version = "0.0.2"
 
 url = "https://github.com/karellen/karellen-pyb-plugin"
+urls = {
+    "Bug Tracker": "https://github.com/karellen/karellen-pyb-plugin/issues",
+    "Source Code": "https://github.com/karellen/karellen-pyb-plugin/",
+    "Documentation": "https://github.com/karellen/karellen-pyb-plugin/"
+}
+
 summary = "Karellen PyBuilder Plugin"
 description = "Please visit %s for more information!" % url
 
 authors = [Author("Karellen, Inc", "supervisor@karellen.co")]
-default_task = ["install_dependencies", "analyze", "publish"]
+maintainers = [Author("Arcadiy Ivanov", "arcadiy@karellen.co")]
+default_task = ["analyze", "publish"]
 license = "Apache License, Version 2.0"
 
 
 @init
 def set_properties(project):
     # Coverage Configuration
-    project.set_property("unittest_coverage_threshold_warn", 0)
-    project.set_property("unittest_coverage_branch_threshold_warn", 0)
-    project.set_property("unittest_coverage_branch_partial_threshold_warn", 0)
-    project.set_property("integrationtest_coverage_threshold_warn", 0)
-    project.set_property("integrationtest_coverage_branch_threshold_warn", 0)
-    project.set_property("integrationtest_coverage_branch_partial_threshold_warn", 0)
+    project.set_property("coverage_threshold_warn", 0)
+    project.set_property("coverage_branch_threshold_warn", 0)
+    project.set_property("coverage_branch_partial_threshold_warn", 0)
 
     # Cram Configuration
     project.set_property("cram_fail_if_no_tests", False)

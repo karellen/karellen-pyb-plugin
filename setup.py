@@ -1,11 +1,9 @@
 #!/usr/bin/env python
-#
-
 #   -*- coding: utf-8 -*-
 #
 #   This file is part of PyBuilder
 #
-#   Copyright 2011-2015 PyBuilder Team
+#   Copyright 2011-2020 PyBuilder Team
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
 #   you may not use this file except in compliance with the License.
@@ -40,24 +38,41 @@ py2 = not py3
 if py2:
     FileNotFoundError = OSError
 
+
+def install_pyb():
+    try:
+        subprocess.check_call([sys.executable, "-m", "pip", "install", "pybuilder"])
+    except subprocess.CalledProcessError as e:
+        sys.exit(e.returncode)
+
+
 script_dir = os.path.dirname(os.path.realpath(__file__))
 exit_code = 0
+
 try:
     subprocess.check_call(["pyb", "--version"])
 except FileNotFoundError as e:
     if py3 or py2 and e.errno == 2:
-        try:
-            subprocess.check_call([sys.executable, "-m", "pip.__main__", "install", "pybuilder"])
-        except subprocess.CalledProcessError as e:
-            sys.exit(e.returncode)
+        install_pyb()
     else:
         raise
 except subprocess.CalledProcessError as e:
+    if e.returncode == 127:
+        install_pyb()
+    else:
         sys.exit(e.returncode)
 
 try:
-    subprocess.check_call(["pyb", "clean", "install_build_dependencies", "package", "-o"])
-    dist_dir = glob.glob(os.path.join(script_dir, "target", "dist", "*"))[0]
+    from pybuilder.cli import main
+    # verbose, debug, skip all optional...
+    if main("-v", "-X", "-o", "--reset-plugins", "clean", "package"):
+        raise RuntimeError("PyBuilder build failed")
+
+    from pybuilder.reactor import Reactor
+    reactor = Reactor.current_instance()
+    project = reactor.project
+    dist_dir = project.expand_path("$dir_dist")
+
     for src_file in glob.glob(os.path.join(dist_dir, "*")):
         file_name = os.path.basename(src_file)
         target_file_name = os.path.join(script_dir, file_name)
