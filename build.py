@@ -25,7 +25,7 @@ use_plugin("python.core")
 use_plugin("karellen_pyb_plugin")
 
 name = "karellen-pyb-plugin"
-version = "0.0.2"
+version = "0.0.5"
 
 url = "https://github.com/karellen/karellen-pyb-plugin"
 urls = {

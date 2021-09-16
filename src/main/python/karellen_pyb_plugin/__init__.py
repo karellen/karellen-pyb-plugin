@@ -17,7 +17,7 @@
 
 import textwrap
 
-from pybuilder.core import use_plugin, init, before
+from pybuilder.core import use_plugin, init, before, depends, task
 
 use_plugin("python.core")
 use_plugin("copy_resources")
@@ -123,6 +123,7 @@ def set_sphinx_html_path(project):
     sphinx_conf["napoleon_use_keyword"] = True
 
 
-@before("verify")
-def run_header_check(project, logger, reactor):
-    reactor.execute_task_shortest_plan("check_source_file_headers")
+@task
+@depends("check_source_file_headers")
+def verify(project, logger, reactor):
+    pass
